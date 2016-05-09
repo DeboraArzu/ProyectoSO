@@ -20,10 +20,10 @@ namespace ProyectoFinal
         protected Command cmd;
         public int total, used;
 
-        public absWorker(int id, int total, Command cmd)
+        public absWorker(int id, int total, Command comando)
         {
             this.id = id;
-            this.cmd = cmd;
+            this.cmd = comando;
             this.total = total;
             this.used = 0;
             this.thread = new Thread(this.work);

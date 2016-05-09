@@ -1,0 +1,10 @@
+c:\users\debora\documents\visual studio 2015\Projects\ProyectoFinal\ProyectoFinal\bin\Debug\ProyectoFinal.exe.config
+c:\users\debora\documents\visual studio 2015\Projects\ProyectoFinal\ProyectoFinal\obj\Debug\ProyectoFinal.Form1.resources
+c:\users\debora\documents\visual studio 2015\Projects\ProyectoFinal\ProyectoFinal\obj\Debug\ProyectoFinal.Properties.Resources.resources
+c:\users\debora\documents\visual studio 2015\Projects\ProyectoFinal\ProyectoFinal\obj\Debug\ProyectoFinal.csproj.GenerateResource.Cache
+c:\users\debora\documents\visual studio 2015\Projects\ProyectoFinal\ProyectoFinal\bin\Debug\ProyectoFinal.exe
+c:\users\debora\documents\visual studio 2015\Projects\ProyectoFinal\ProyectoFinal\bin\Debug\ProyectoFinal.pdb
+c:\users\debora\documents\visual studio 2015\Projects\ProyectoFinal\ProyectoFinal\bin\Debug\MySql.Data.dll
+c:\users\debora\documents\visual studio 2015\Projects\ProyectoFinal\ProyectoFinal\obj\Debug\ProyectoFinal.exe
+c:\users\debora\documents\visual studio 2015\Projects\ProyectoFinal\ProyectoFinal\obj\Debug\ProyectoFinal.pdb
+C:\Users\Debora\Documents\Visual Studio 2015\Projects\ProyectoFinal\ProyectoFinal\obj\Debug\ProyectoFinal.csprojResolveAssemblyReference.cache

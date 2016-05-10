@@ -17,13 +17,13 @@ namespace ProyectoFinal
         protected int id;
         protected bool working;
         protected Thread thread;
-        protected Comandos cmd;
+        protected Comandos command;
         public int total, used;
 
         public absWorker(int id, int total, Comandos comando)
         {
             this.id = id;
-            this.cmd = comando;
+            this.command = comando;
             this.total = total;
             this.used = 0;
             this.thread = new Thread(this.work);

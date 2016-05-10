@@ -60,9 +60,8 @@ namespace ProyectoFinal
             origen = txtorigen.Text;
             destino = txtdestino.Text;
 
-            pool = TheadPool.getInstance();
+            pool = TheadPool.getInstance(productor, consumidor, tamaño);
             timer1.Start();
-
         }
 
         private void showPCWorker(DataGridView dgv, List<absWorker> list)

@@ -26,11 +26,10 @@ namespace ProyectoFinal
                     TheadPool.semaforo.WaitOne();
                     producir.WaitOne();
                     working = true;
-                    TheadPool.comando.Add(cmd);
-                    Thread.Sleep(100);
+                    TheadPool.comando.Add(command);
+                    Thread.Sleep(1000);
                     producir.Release();
                     TheadPool.semaforo.Release();
-
                     used++;
                     size++;
                 }

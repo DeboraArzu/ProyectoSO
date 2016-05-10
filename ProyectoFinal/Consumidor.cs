@@ -22,18 +22,17 @@ namespace ProyectoFinal
             TheadPool.semaforo.WaitOne();
             consume.WaitOne();
             working = true;
-            cmd = TheadPool.comando.FirstOrDefault();
-            TheadPool.comando.Remove(cmd);
-
-            Thread.Sleep(1500);
+            command = TheadPool.comando.FirstOrDefault();
+            TheadPool.comando.Remove(command);
+            Thread.Sleep(1000);
             working = false;
             consume.Release();
             TheadPool.semaforo.Release();
             used++;
-            if (cmd != null)
+            if (command != null)
             {
                 Productor.size--;
-                if (cmd != null) cmd.execute();
+                if (command != null) command.execute();
                 TheadPool.getInstance().consumidores.Clear();
             }
         }

@@ -11,9 +11,6 @@ namespace ProyectoFinal
 {
     class TheadPool
     {
-        // public MySqlConnection sqlcon;
-        //string myConnectionString = "server=127.0.0.1;uid=root;" + "pwd=summerparadise21;database=so;";
-
         MySqlConnection connection = null;
         MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
 
@@ -27,18 +24,18 @@ namespace ProyectoFinal
 
         private static TheadPool _instance = null;
 
-        private TheadPool(int producerParam, int consumerParam, int commandsSize)
+        private TheadPool(int intproductor, int intconsumidor, int tamanio)
         {
             comando = new List<Comandos>();
-            semaforo = new Semaphore(producerParam + consumerParam, producerParam + consumerParam);
+            semaforo = new Semaphore(intproductor + intconsumidor, intproductor + intconsumidor);
 
             this.productores = new List<absWorker>();
             this.consumidores = new List<absWorker>();
 
-            Productor.producir = new Semaphore(producerParam, producerParam);
-            Consumidor.consume = new Semaphore(consumerParam, consumerParam);
+            Productor.producir = new Semaphore(intproductor, intproductor);
+            Consumidor.consume = new Semaphore(intconsumidor, intconsumidor);
 
-            maxSize = commandsSize;
+            maxSize = tamanio;
 
             try
             {
@@ -71,16 +68,15 @@ namespace ProyectoFinal
 
         public void addRegister(string origen, string destino, int cantidad)
         {
-            //SQL INSERT
             ConexionSQL c = new ConexionSQL();
             absWorker producer = new Productor(productores.Count + consumidores.Count, cantidad, new Insertar(origen, destino));
-            c.insert(origen, destino);
+            absWorker consumer = new Productor(productores.Count + consumidores.Count, cantidad, new Insertar(origen, destino));
             productores.Add(producer);
+            consumidores.Add(consumer);
         }
 
         public void removeRegister(string origen, string destino, int cantidad)
         {
-            //SQL DELETE
             absWorker consumer = new Productor(productores.Count + consumidores.Count, cantidad, new Eliminar(origen, destino));
             productores.Add(consumer);
         }

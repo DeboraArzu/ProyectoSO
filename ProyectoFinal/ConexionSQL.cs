@@ -15,10 +15,11 @@ namespace ProyectoFinal
 {
     class ConexionSQL
     {
-       
+
         MySqlConnection connection = null;
-       
+
         MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
+
         public bool SetConnection()
         {
             builder.Server = "127.0.0.1";
@@ -54,7 +55,7 @@ namespace ProyectoFinal
                 }
                 else
                 {
-                    
+
                     return false;
                 }
             }
@@ -79,7 +80,7 @@ namespace ProyectoFinal
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("EXITO EN LA CONEXION");
                     return true;
-                   
+
                 }
                 else
                 {
@@ -92,71 +93,126 @@ namespace ProyectoFinal
                 return false;
             }
         }
-        
+
     }
 
-    public interface Command
+    public interface Comandos
     {
         void execute();
     }
 
-    public abstract class DBCommand : Command
+    public abstract class absComando : Comandos
     {
         int id;
-        public string from, to;
+        public string origen, destino;
 
-        public DBCommand(string from, string to)
+        public absComando(string from, string to)
         {
-            this.from = from;
-            this.to = to;
+            this.origen = from;
+            this.destino = to;
         }
 
         public abstract void execute();
     }
 
-    public class InsertionCommand : DBCommand
+    public class Insertar : absComando
     {
-         MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
-        public InsertionCommand(string from, string to) : base(from, to)
+        MySqlConnection connection = null;
+        MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
+
+        public bool SetConnection()
         {
+            builder.Server = "127.0.0.1";
+            builder.UserID = "root";
+            builder.Password = "summerparadise21";
+            builder.Database = "so";
             try
             {
-                MySqlConnection conn = new MySqlConnection(builder.ToString());
-                MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "INSERT INTO listatrans (id,origen,destino) values (0,'" + from + "', '" + to + "')";
-                conn.Open();
-                cmd.ExecuteNonQuery();
-
-
+                connection = new MySqlConnection(builder.ToString());
+                MySqlCommand cmd = connection.CreateCommand();
+                connection.Open();
+                return true;
             }
-            catch (MySql.Data.MySqlClient.MySqlException ex)
+            catch (MySqlException ex)
             {
-            
+                return false;
             }
         }
+        public Insertar(string origen, string destino) : base(origen, destino)
+        {
 
+            try
+            {
+                if (SetConnection())
+                {
+                    MySqlConnection conn = new MySqlConnection(builder.ToString());
+                    MySqlCommand cmd = conn.CreateCommand();
+                    cmd.CommandText = "INSERT INTO listatrans (id,origen,destino) values (0,'" + origen + "', '" + destino + "')";
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("EXITO EN LA CONEXION");
+                }
+                else
+                {
+                }
+            }
+            catch (Exception ex)
+            {
+                connection.Close();
+            }
+        }
         public override void execute()
         {
-          
         }
     }
 
-    public class DeleteCommand : DBCommand
+    public class Eliminar : absComando
     {
+        MySqlConnection connection = null;
         MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
-        public DeleteCommand(string from, string to) : base(from, to)
+
+        public bool SetConnection()
         {
-            MySqlConnection conn = new MySqlConnection(builder.ToString());
-            MySqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "DELETE FROM lista_transaccion WHERE Origen = '" + from + "' AND Destino = '" + to + "' LIMIT 1";
-            conn.Open();
-            cmd.ExecuteNonQuery();
-
+            builder.Server = "127.0.0.1";
+            builder.UserID = "root";
+            builder.Password = "summerparadise21";
+            builder.Database = "so";
+            try
+            {
+                connection = new MySqlConnection(builder.ToString());
+                MySqlCommand cmd = connection.CreateCommand();
+                connection.Open();
+                return true;
+            }
+            catch (MySqlException ex)
+            {
+                return false;
+            }
         }
-
+        public Eliminar(string origen, string destino) : base(origen, destino)
+        {
+            try
+            {
+                if (SetConnection())
+                {
+                    MySqlConnection conn = new MySqlConnection(builder.ToString());
+                    MySqlCommand cmd = conn.CreateCommand();
+                    cmd.CommandText = "DELETE FROM listatrans where origen =" + base.origen + "and destino = " + base.destino;
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("EXITO EN LA CONEXION");
+                }
+                else
+                {
+                }
+            }
+            catch (Exception ex)
+            {
+                connection.Close();
+            }
+        }
         public override void execute()
         {
-
         }
     }
 }

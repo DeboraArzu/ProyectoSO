@@ -11,7 +11,7 @@ namespace ProyectoFinal
     {
         public static Semaphore producir;
         public static int size = 0;
-        public Productor(int id, int total, Command cmd) : base(id, total, cmd)
+        public Productor(int id, int total, Comandos cmd) : base(id, total, cmd)
         {
         }
 

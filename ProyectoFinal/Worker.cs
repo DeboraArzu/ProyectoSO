@@ -17,10 +17,10 @@ namespace ProyectoFinal
         protected int id;
         protected bool working;
         protected Thread thread;
-        protected Command cmd;
+        protected Comandos cmd;
         public int total, used;
 
-        public absWorker(int id, int total, Command comando)
+        public absWorker(int id, int total, Comandos comando)
         {
             this.id = id;
             this.cmd = comando;

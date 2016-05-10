@@ -60,8 +60,7 @@ namespace ProyectoFinal
             origen = txtorigen.Text;
             destino = txtdestino.Text;
 
-            pool = TheadPool.getInstance(productor, consumidor, tamaño);
-            //timer1.Interval = 5000;
+            pool = TheadPool.getInstance();
             timer1.Start();
 
         }

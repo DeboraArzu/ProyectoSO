@@ -22,14 +22,14 @@ namespace ProyectoFinal
         public List<absWorker> consumidores;
 
         public static int maxSize;
-        public static List<Command> comando;
+        public static List<Comandos> comando;
         public static Semaphore semaforo;
 
         private static TheadPool _instance = null;
 
         private TheadPool(int producerParam, int consumerParam, int commandsSize)
         {
-            comando = new List<Command>();
+            comando = new List<Comandos>();
             semaforo = new Semaphore(producerParam + consumerParam, producerParam + consumerParam);
 
             this.productores = new List<absWorker>();
@@ -73,7 +73,7 @@ namespace ProyectoFinal
         {
             //SQL INSERT
             ConexionSQL c = new ConexionSQL();
-            absWorker producer = new Productor(productores.Count + consumidores.Count, cantidad, new InsertionCommand(origen, destino));
+            absWorker producer = new Productor(productores.Count + consumidores.Count, cantidad, new Insertar(origen, destino));
             c.insert(origen, destino);
             productores.Add(producer);
         }
@@ -81,7 +81,7 @@ namespace ProyectoFinal
         public void removeRegister(string origen, string destino, int cantidad)
         {
             //SQL DELETE
-            absWorker consumer = new Productor(productores.Count + consumidores.Count, cantidad, new DeleteCommand(origen, destino));
+            absWorker consumer = new Productor(productores.Count + consumidores.Count, cantidad, new Eliminar(origen, destino));
             productores.Add(consumer);
         }
     }

@@ -150,7 +150,7 @@ namespace ProyectoFinal
                     cmd.CommandText = "INSERT INTO listatrans (id,origen,destino) values (0,'" + origen + "', '" + destino + "')";
                     conn.Open();
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("EXITO EN LA CONEXION");
+                    //MessageBox.Show("EXITO EN LA CONEXION");
                 }
                 else
                 {
@@ -200,7 +200,7 @@ namespace ProyectoFinal
                     cmd.CommandText = "DELETE FROM listatrans where origen =" + base.origen + "and destino = " + base.destino;
                     conn.Open();
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("EXITO EN LA CONEXION");
+                   // MessageBox.Show("EXITO EN LA CONEXION");
                 }
                 else
                 {

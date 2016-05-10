@@ -22,12 +22,13 @@ namespace ProyectoFinal
         private void bteliminar_Click(object sender, EventArgs e)
         {
             //c.delete(consumidor);
-            pool.removeRegister(origen, destino, cantidad);
+            pool.eliminar(origen, destino, cantidad);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            btagregar.Enabled = true;
+            bteliminar.Enabled = true;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -38,8 +39,19 @@ namespace ProyectoFinal
 
         private void btagregar_Click(object sender, EventArgs e)
         {
+            tamaño = Convert.ToInt32(intcola.Text);
+            cantidad = Convert.ToInt32(intprocesos.Text);
+            consumidor = Convert.ToInt32(intconsumidor.Text);
+            productor = Convert.ToInt32(intproductor.Text);
+
+            origen = txtorigen.Text;
+            destino = txtdestino.Text;
+            
+            pool = TheadPool.getInstance(productor, consumidor, tamaño);
+            timer1.Start();
+
             //c.insert(origen, destino);
-            pool.addRegister(origen, destino, cantidad);
+            pool.agregar(origen, destino, cantidad);
         }
 
         public Form1()
@@ -49,19 +61,9 @@ namespace ProyectoFinal
 
         private void btiniciar_Click(object sender, EventArgs e)
         {
-            btagregar.Enabled = true;
-            bteliminar.Enabled = true;
+           
 
-            tamaño = Convert.ToInt32(intcola.Text);
-            cantidad = Convert.ToInt32(intprocesos.Text);
-            consumidor = Convert.ToInt32(intconsumidor.Text);
-            productor = Convert.ToInt32(intproductor.Text);
-
-            origen = txtorigen.Text;
-            destino = txtdestino.Text;
-
-            pool = TheadPool.getInstance(productor, consumidor, tamaño);
-            timer1.Start();
+           
         }
 
         private void showPCWorker(DataGridView dgv, List<absWorker> list)

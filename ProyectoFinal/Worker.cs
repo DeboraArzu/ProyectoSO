@@ -20,6 +20,8 @@ namespace ProyectoFinal
         protected Comandos command;
         public int total, used;
 
+        
+
         public absWorker(int id, int total, Comandos comando)
         {
             this.id = id;

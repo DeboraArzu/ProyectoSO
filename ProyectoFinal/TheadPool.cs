@@ -11,6 +11,9 @@ namespace ProyectoFinal
 {
     class TheadPool
     {
+        //test
+        int productor, consumidor, cola = 0;
+
         MySqlConnection connection = null;
         MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
 
@@ -66,19 +69,20 @@ namespace ProyectoFinal
             return _instance;
         }
 
-        public void addRegister(string origen, string destino, int cantidad)
+        public void agregar(string origen, string destino, int cantidad)
         {
-            ConexionSQL c = new ConexionSQL();
+           // ConexionSQL c = new ConexionSQL();
             absWorker producer = new Productor(productores.Count + consumidores.Count, cantidad, new Insertar(origen, destino));
-            absWorker consumer = new Productor(productores.Count + consumidores.Count, cantidad, new Insertar(origen, destino));
+           // absWorker consumer = new Productor(productores.Count + consumidores.Count, cantidad, new Insertar(origen, destino));
             productores.Add(producer);
-            consumidores.Add(consumer);
+           // consumidores.Add(consumer);
         }
 
-        public void removeRegister(string origen, string destino, int cantidad)
+        public void eliminar(string origen, string destino, int cantidad)
         {
             absWorker consumer = new Productor(productores.Count + consumidores.Count, cantidad, new Eliminar(origen, destino));
             productores.Add(consumer);
+            productores.Remove(consumer);
         }
     }
 }

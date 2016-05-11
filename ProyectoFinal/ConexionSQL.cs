@@ -39,18 +39,24 @@ namespace ProyectoFinal
             }
         }
 
-        public bool insert(string origen, string destino)
+        public bool insert(string origen, string destino, int cantidad)
         {
             try
             {
                 if (SetConnection())
                 {
-                    MySqlConnection conn = new MySqlConnection(builder.ToString());
-                    MySqlCommand cmd = conn.CreateCommand();
-                    cmd.CommandText = "INSERT INTO listatrans (id,origen,destino) values (0,'" + origen + "', '" + destino + "')";
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("EXITO EN LA CONEXION");
+                    int i = 0;
+                    while (i <= cantidad)
+                    {
+                        MySqlConnection conn = new MySqlConnection(builder.ToString());
+                        MySqlCommand cmd = conn.CreateCommand();
+                        cmd.CommandText = "INSERT INTO listatrans (id,origen,destino) values (0,'" + origen + "', '" + destino + "')";
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        // MessageBox.Show("EXITO EN LA CONEXION");
+                        i++;
+                        return true;
+                    }
                     return true;
                 }
                 else
@@ -75,10 +81,10 @@ namespace ProyectoFinal
                 {
                     MySqlConnection conn = new MySqlConnection(builder.ToString());
                     MySqlCommand cmd = conn.CreateCommand();
-                    cmd.CommandText = "DELETE FROM listatrans where origen =" + origen + "and destino = " + destino;
+                    cmd.CommandText = "DELETE FROM listatrans where origen =" + origen + "and destino = " + destino + "limit 1";
                     conn.Open();
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("EXITO EN LA CONEXION");
+                   // MessageBox.Show("EXITO EN LA CONEXION");
                     return true;
 
                 }
@@ -200,7 +206,7 @@ namespace ProyectoFinal
                     cmd.CommandText = "DELETE FROM listatrans where origen =" + base.origen + "and destino = " + base.destino;
                     conn.Open();
                     cmd.ExecuteNonQuery();
-                   // MessageBox.Show("EXITO EN LA CONEXION");
+                    // MessageBox.Show("EXITO EN LA CONEXION");
                 }
                 else
                 {

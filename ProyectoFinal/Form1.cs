@@ -21,8 +21,8 @@ namespace ProyectoFinal
 
         private void bteliminar_Click(object sender, EventArgs e)
         {
-            //c.delete(consumidor);
-            pool.eliminar(origen, destino, cantidad);
+            c.delete(origen, destino);
+            //pool.eliminar(origen, destino, cantidad);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -33,7 +33,8 @@ namespace ProyectoFinal
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            showPCWorker(dgvProductor, pool.productores);
+            //showPCWorker(dgvProductor, pool.productores);
+          
             showPCWorker(dgvConsumidor, pool.consumidores);
         }
 
@@ -50,8 +51,9 @@ namespace ProyectoFinal
             pool = TheadPool.getInstance(productor, consumidor, tamaño);
             timer1.Start();
 
-            //c.insert(origen, destino);
+            //c.insert(origen, destino, cantidad);
             pool.agregar(origen, destino, cantidad);
+            show();
         }
 
         public Form1()
@@ -61,18 +63,28 @@ namespace ProyectoFinal
 
         private void btiniciar_Click(object sender, EventArgs e)
         {
-           
-
-           
         }
 
         private void showPCWorker(DataGridView dgv, List<absWorker> list)
         {
             dgv.Rows.Clear();
+           
             for (int i = 0; i < list.Count; i++)
             {
                 var v = list[i];
-                dgv.Rows.Add(v.getId(), v.getWorking(), v.getStatus(), v.used + " de " + v.total);
+                dgv.Rows.Add(v.getId(), v.getWorking(), "Running", v.used + " de " + v.total);
+            }
+          
+        }
+        private void show()
+        {
+            for(int i = 0; i < productor; i++)
+            {
+                dgvProductor.Rows.Add(i, "true","Running", "1" + " de " + productor);
+            }
+            for (int i = 0; i < consumidor; i++)
+            {
+                c.insert(origen, destino, cantidad);
             }
         }
     }

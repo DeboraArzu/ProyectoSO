@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.btagregar = new System.Windows.Forms.Button();
             this.bteliminar = new System.Windows.Forms.Button();
-            this.btiniciar = new System.Windows.Forms.Button();
             this.txtorigen = new System.Windows.Forms.TextBox();
             this.txtdestino = new System.Windows.Forms.TextBox();
             this.intconsumidor = new System.Windows.Forms.TextBox();
@@ -84,18 +83,6 @@
             this.bteliminar.Text = "Eliminar";
             this.bteliminar.UseVisualStyleBackColor = true;
             this.bteliminar.Click += new System.EventHandler(this.bteliminar_Click);
-            // 
-            // btiniciar
-            // 
-            this.btiniciar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btiniciar.Location = new System.Drawing.Point(467, 43);
-            this.btiniciar.Margin = new System.Windows.Forms.Padding(4);
-            this.btiniciar.Name = "btiniciar";
-            this.btiniciar.Size = new System.Drawing.Size(100, 26);
-            this.btiniciar.TabIndex = 6;
-            this.btiniciar.Text = "Iniciar";
-            this.btiniciar.UseVisualStyleBackColor = true;
-            this.btiniciar.Click += new System.EventHandler(this.btiniciar_Click);
             // 
             // txtorigen
             // 
@@ -344,7 +331,6 @@
             this.Controls.Add(this.intconsumidor);
             this.Controls.Add(this.txtdestino);
             this.Controls.Add(this.txtorigen);
-            this.Controls.Add(this.btiniciar);
             this.Controls.Add(this.bteliminar);
             this.Controls.Add(this.btagregar);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -364,7 +350,6 @@
 
         private System.Windows.Forms.Button btagregar;
         private System.Windows.Forms.Button bteliminar;
-        private System.Windows.Forms.Button btiniciar;
         private System.Windows.Forms.TextBox txtorigen;
         private System.Windows.Forms.TextBox txtdestino;
         private System.Windows.Forms.TextBox intconsumidor;

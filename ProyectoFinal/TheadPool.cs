@@ -12,7 +12,7 @@ namespace ProyectoFinal
     class TheadPool
     {
         //test
-        int productor, consumidor, cola = 0;
+        public static int productor, consumidor, cola = 0;
 
         MySqlConnection connection = null;
         MySqlConnectionStringBuilder builder = new MySqlConnectionStringBuilder();
@@ -48,7 +48,7 @@ namespace ProyectoFinal
                 builder.Database = "so";
                 connection = new MySqlConnection(builder.ToString());
                 connection.Open();
-                
+
             }
             catch (MySqlException ex)
             {
@@ -71,9 +71,8 @@ namespace ProyectoFinal
 
         public void agregar(string origen, string destino, int cantidad)
         {
-           // ConexionSQL c = new ConexionSQL();
             absWorker producer = new Productor(productores.Count + consumidores.Count, cantidad, new Insertar(origen, destino));
-           // absWorker consumer = new Productor(productores.Count + consumidores.Count, cantidad, new Insertar(origen, destino));
+            //absWorker consumer = new Productor(productores.Count + consumidores.Count, cantidad, new Insertar(origen, destino));
             productores.Add(producer);
            // consumidores.Add(consumer);
         }
